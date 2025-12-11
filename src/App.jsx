@@ -62,11 +62,15 @@ export default function App() {
 
       {/* HERO CONTENT */}
       <div style={{
-        position: "relative",
-        zIndex: 10,
-        padding: "80px 50px",
-        maxWidth: "900px",
-      }}>
+  position: "relative",
+  zIndex: 10,
+  padding: "80px 50px",
+  width: "100%",
+  maxWidth: "100%",
+  margin: "0 auto",
+}}>
+
+
 
         <motion.h1
           initial={{ opacity: 0, y: -40 }}
