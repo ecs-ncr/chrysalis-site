@@ -647,6 +647,146 @@ export default function App() {
   </motion.a>
 
 </div>
+{/* RULES & GUIDELINES SECTION */}
+<div style={{
+  marginTop: "150px",
+  padding: "40px",
+  position: "relative",
+  zIndex: 10
+}}>
+
+  <h2 style={{
+    fontSize: "48px",
+    fontWeight: "900",
+    marginBottom: "40px",
+    textTransform: "uppercase",
+    letterSpacing: "3px",
+    textShadow: "0 0 15px rgba(255,0,0,0.5)"
+  }}>
+    Rules & Guidelines
+  </h2>
+
+  {/* SCROLL PANEL */}
+  <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 1 }}
+    style={{
+      padding: "50px",
+      borderRadius: "25px",
+      background: "linear-gradient(180deg, rgba(40,0,0,0.8), rgba(0,0,0,0.85))",
+      border: "2px solid rgba(255,0,0,0.6)",
+      boxShadow: "0 0 50px rgba(255,0,0,0.6)",
+      position: "relative",
+      overflow: "hidden"
+    }}
+  >
+
+    {/* PARCHMENT TEXTURE */}
+    <motion.div
+      animate={{ opacity: [0.15, 0.3, 0.15] }}
+      transition={{ duration: 6, repeat: Infinity }}
+      style={{
+        position: "absolute",
+        inset: 0,
+        backgroundImage: "url('https://i.imgur.com/LJwELRb.png')",
+        backgroundSize: "cover",
+        opacity: 0.2,
+        pointerEvents: "none"
+      }}
+    />
+
+    {/* CURSED ENERGY SIDE AURAS */}
+    <motion.div
+      animate={{ scale: [1, 1.15, 1] }}
+      transition={{ duration: 4, repeat: Infinity }}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: "-10%",
+        width: "30%",
+        height: "120%",
+        background: "radial-gradient(rgba(255,0,0,0.4), transparent)",
+        opacity: 0.2
+      }}
+    />
+
+    <motion.div
+      animate={{ scale: [1.15, 1, 1.15] }}
+      transition={{ duration: 4, repeat: Infinity }}
+      style={{
+        position: "absolute",
+        top: 0,
+        right: "-10%",
+        width: "30%",
+        height: "120%",
+        background: "radial-gradient(rgba(255,0,0,0.4), transparent)",
+        opacity: 0.2
+      }}
+    />
+
+    {/* CONTENT */}
+    <h3 style={{
+      fontSize: "32px",
+      fontWeight: "800",
+      marginBottom: "25px",
+      textShadow: "0 0 10px rgba(255,0,0,0.4)"
+    }}>
+      General Rules
+    </h3>
+
+    <ul style={{ lineHeight: "1.8", fontSize: "18px", opacity: 0.9 }}>
+      <li>• All submissions must be original and created exclusively for Chrysalis.</li>
+      <li>• Plagiarism leads to immediate disqualification.</li>
+      <li>• A participant can submit entries in multiple categories.</li>
+      <li>• Follow all file format and word count requirements.</li>
+    </ul>
+
+    <div style={{ marginTop: "40px" }} />
+
+    <h3 style={{
+      fontSize: "32px",
+      fontWeight: "800",
+      marginBottom: "25px",
+      textShadow: "0 0 10px rgba(255,0,0,0.4)"
+    }}>
+      Category-Specific Rules
+    </h3>
+
+    <ul style={{ lineHeight: "1.8", fontSize: "18px", opacity: 0.9 }}>
+      <li>• Short Story — max 1500 words, PDF format.</li>
+      <li>• Scriptwriting — up to 10 pages, proper screenplay format.</li>
+      <li>• Short Film — max 4 minutes, YouTube/Vimeo link.</li>
+      <li>• Blogging — up to 700 words, screenshot + link.</li>
+      <li>• Flow Art/Photography — High-resolution JPG/PNG.</li>
+    </ul>
+
+    <div style={{ marginTop: "40px" }} />
+
+    {/* ANIME STAMP */}
+    <motion.div
+      animate={{ rotate: [-5, 5, -5], scale: [1, 1.1, 1] }}
+      transition={{ duration: 6, repeat: Infinity }}
+      style={{
+        position: "absolute",
+        bottom: "20px",
+        right: "20px",
+        padding: "20px 30px",
+        borderRadius: "12px",
+        background: "rgba(255,0,0,0.3)",
+        border: "1px solid rgba(255,0,0,0.5)",
+        boxShadow: "0 0 25px rgba(255,0,0,0.5)",
+        fontSize: "20px",
+        fontWeight: "900",
+        letterSpacing: "2px",
+        textTransform: "uppercase"
+      }}
+    >
+      Official Rules
+    </motion.div>
+
+  </motion.div>
+</div>
 
     </div>
   );
