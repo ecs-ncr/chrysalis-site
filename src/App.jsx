@@ -467,6 +467,186 @@ export default function App() {
   </div>
 
 </div>
+{/* HOW TO PARTICIPATE SECTION */}
+<div style={{
+  marginTop: "150px",
+  padding: "40px",
+  position: "relative",
+  zIndex: 10
+}}>
+
+  <h2 style={{
+    fontSize: "48px",
+    fontWeight: "900",
+    marginBottom: "40px",
+    textTransform: "uppercase",
+    letterSpacing: "3px",
+    textShadow: "0 0 15px rgba(255,0,0,0.5)"
+  }}>
+    How to Participate
+  </h2>
+
+  {/* STEP CONTAINER */}
+  <div style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "50px"
+  }}>
+
+    {/* STEP 1 */}
+    <motion.div
+      initial={{ opacity: 0, x: -40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      style={{
+        padding: "35px",
+        borderRadius: "18px",
+        background: "linear-gradient(135deg, rgba(255,0,0,0.25), rgba(0,0,0,0.6))",
+        border: "1px solid rgba(255,0,0,0.7)",
+        boxShadow: "0 0 30px rgba(255,0,0,0.5)",
+        position: "relative"
+      }}
+    >
+      <h3 style={{ fontSize: "28px", fontWeight: "800", marginBottom: "10px" }}>Step 1 — Choose Your Category</h3>
+      <p style={{ opacity: 0.9 }}>Select from short stories, scripts, filmmaking, blogging, and more.</p>
+
+      {/* MINI SLASH */}
+      <motion.div
+        animate={{ rotate: [0, 15, -15, 0] }}
+        transition={{ duration: 6, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          top: "-15px",
+          right: "20px",
+          width: "60px",
+          height: "60px",
+          background: "linear-gradient(45deg, rgba(255,0,0,0.35), transparent)",
+          opacity: 0.4,
+          transform: "skewX(-15deg)"
+        }}
+      />
+    </motion.div>
+
+    {/* ARROW */}
+    <motion.div
+      animate={{ y: [0, 10, 0] }}
+      transition={{ duration: 1.5, repeat: Infinity }}
+      style={{
+        textAlign: "center",
+        fontSize: "40px",
+        color: "rgba(255,0,0,0.8)",
+        textShadow: "0 0 20px rgba(255,0,0,0.6)"
+      }}
+    >
+      ↓
+    </motion.div>
+
+    {/* STEP 2 */}
+    <motion.div
+      initial={{ opacity: 0, x: 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      style={{
+        padding: "35px",
+        borderRadius: "18px",
+        background: "linear-gradient(135deg, rgba(255,0,0,0.25), rgba(0,0,0,0.6))",
+        border: "1px solid rgba(255,0,0,0.7)",
+        boxShadow: "0 0 30px rgba(255,0,0,0.5)",
+        position: "relative"
+      }}
+    >
+      <h3 style={{ fontSize: "28px", fontWeight: "800", marginBottom: "10px" }}>Step 2 — Create Your Entry</h3>
+      <p style={{ opacity: 0.9 }}>Follow the theme, rules, and file formats. Make it creative and original.</p>
+
+      {/* ENERGY ORB */}
+      <motion.div
+        animate={{ scale: [1, 1.4, 1] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          bottom: "-20px",
+          left: "-20px",
+          width: "70px",
+          height: "70px",
+          background: "radial-gradient(rgba(255,0,0,0.45), transparent)",
+          borderRadius: "50%",
+          opacity: 0.35
+        }}
+      />
+    </motion.div>
+
+    {/* ARROW */}
+    <motion.div
+      animate={{ y: [0, 10, 0] }}
+      transition={{ duration: 1.5, repeat: Infinity }}
+      style={{
+        textAlign: "center",
+        fontSize: "40px",
+        color: "rgba(255,0,0,0.8)",
+        textShadow: "0 0 20px rgba(255,0,0,0.6)"
+      }}
+    >
+      ↓
+    </motion.div>
+
+    {/* STEP 3 */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      style={{
+        padding: "35px",
+        borderRadius: "18px",
+        background: "linear-gradient(135deg, rgba(255,0,0,0.25), rgba(0,0,0,0.6))",
+        border: "1px solid rgba(255,0,0,0.7)",
+        boxShadow: "0 0 30px rgba(255,0,0,0.5)",
+        position: "relative"
+      }}
+    >
+      <h3 style={{ fontSize: "28px", fontWeight: "800", marginBottom: "10px" }}>Step 3 — Submit Online</h3>
+      <p style={{ opacity: 0.9 }}>Upload your work using the official Google Form link provided.</p>
+
+      {/* FLASH LINE */}
+      <motion.div
+        animate={{ x: [-20, 20, -20] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          width: "100%",
+          height: "4px",
+          background: "linear-gradient(90deg, transparent, rgba(255,0,0,0.7), transparent)"
+        }}
+      />
+    </motion.div>
+
+  </div>
+
+  {/* CTA BUTTON */}
+  <motion.a
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.95 }}
+    href="#"
+    style={{
+      display: "inline-block",
+      marginTop: "60px",
+      padding: "20px 40px",
+      fontSize: "22px",
+      fontWeight: "900",
+      textTransform: "uppercase",
+      letterSpacing: "2px",
+      background: "linear-gradient(45deg, #ff1a1a, #b30000)",
+      borderRadius: "15px",
+      boxShadow: "0 0 25px rgba(255,0,0,0.7)",
+      color: "white",
+      cursor: "pointer"
+    }}
+  >
+    Complete Your Mission →
+  </motion.a>
+
+</div>
 
     </div>
   );
