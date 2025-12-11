@@ -1,196 +1,227 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 export default function App() {
+  // VHS STATIC EFFECT (adds flicker)
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = `
+      @keyframes vhsFlicker {
+        0% { opacity: 0.95; }
+        5% { opacity: 0.85; }
+        10% { opacity: 0.9; }
+        15% { opacity: 0.7; }
+        20% { opacity: 0.92; }
+        100% { opacity: 0.95; }
+      }
+    `;
+    document.head.appendChild(style);
+  }, []);
+
   return (
     <div
       style={{
         minHeight: "100vh",
         width: "100vw",
-        overflowX: "hidden",
         background: "black",
         color: "white",
+        overflowX: "hidden",
+        fontFamily: "'Inter', sans-serif",
         position: "relative",
-        fontFamily: "'Cinzel', serif",
       }}
     >
 
-      {/* VHS SCANLINES */}
-      <div
+      {/* 🔥 FLOATING RED FOG LAYER */}
+      <motion.div
+        animate={{ opacity: [0.3, 0.5, 0.35] }}
+        transition={{ duration: 8, repeat: Infinity }}
         style={{
-          pointerEvents: "none",
-          position: "absolute",
+          position: "fixed",
           top: 0,
           left: 0,
-          width: "100%",
-          height: "100%",
-          background:
-            "repeating-linear-gradient(rgba(255,0,0,0.05) 0px, rgba(255,0,0,0.05) 2px, transparent 3px, transparent 6px)",
-          mixBlendMode: "overlay",
-          zIndex: 5,
-        }}
-      />
-
-      {/* UPSIDE DOWN RED FOG */}
-      <div
-        style={{
-          position: "absolute",
-          top: "-20vh",
-          left: "-20vw",
-          width: "150vw",
-          height: "150vh",
-          background:
-            "radial-gradient(circle, rgba(255,0,0,0.25) 0%, transparent 70%)",
-          filter: "blur(80px)",
-          opacity: 0.5,
+          width: "120%",
+          height: "120%",
+          background: "url('https://i.ibb.co/K6Z2kTL/redfog.png')",
+          backgroundSize: "cover",
+          filter: "blur(12px)",
+          opacity: 0.35,
+          pointerEvents: "none",
           zIndex: 1,
         }}
       />
 
-      {/* FLOATING SPORES */}
-      {[...Array(40)].map((_, i) => (
-        <motion.div
-          key={i}
-          animate={{ y: [0, -40, 0], opacity: [0.3, 0.9, 0.3] }}
-          transition={{
-            duration: 4 + i * 0.2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{
-            width: "8px",
-            height: "8px",
-            borderRadius: "50%",
-            position: "absolute",
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-            background: "rgba(255,0,0,0.7)",
-            filter: "blur(1px)",
-            zIndex: 3,
-          }}
-        />
-      ))}
-
-      {/* ============================
-              HERO SECTION
-      ============================= */}
-      <section
+      {/* 🔥 UPSIDE DOWN PORTAL GLOW */}
+      <motion.div
+        animate={{ scale: [1, 1.15, 1] }}
+        transition={{ duration: 6, repeat: Infinity }}
         style={{
+          position: "fixed",
+          top: "-10%",
+          left: "-20%",
+          width: "60vw",
+          height: "60vw",
+          background: "radial-gradient(rgba(255,0,0,0.35), transparent)",
+          filter: "blur(40px)",
+          zIndex: 0,
+        }}
+      />
+
+      {/* 🔥 MIND FLAYER SHADOW SILHOUETTE */}
+      <motion.img
+        src="https://i.ibb.co/HpWQzJp/mindflayer.png"
+        initial={{ opacity: 0, y: 80 }}
+        animate={{ opacity: 0.15, y: 0 }}
+        transition={{ duration: 4 }}
+        style={{
+          position: "fixed",
+          right: "-5vw",
+          top: "0",
+          height: "90vh",
+          opacity: 0.15,
+          zIndex: 2,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* 🔥 STATIC OVERLAY */}
+      <motion.div
+        animate={{ opacity: [0.02, 0.05, 0.03] }}
+        transition={{ duration: 1.2, repeat: Infinity }}
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "url('https://i.ibb.co/0jVhYjH/static.gif')",
+          mixBlendMode: "screen",
+          opacity: 0.03,
+          zIndex: 5,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* ************************************* */}
+      {/*               NAVBAR                  */}
+      {/* ************************************* */}
+      <nav
+        style={{
+          position: "fixed",
+          top: 0,
           width: "100%",
+          zIndex: 20,
+          padding: "18px 40px",
+          background: "rgba(0,0,0,0.6)",
+          borderBottom: "1px solid rgba(255,0,0,0.3)",
+          backdropFilter: "blur(6px)",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <motion.h1
+          whileHover={{ scale: 1.05, textShadow: "0 0 20px red" }}
+          style={{
+            fontFamily: "'Cinzel', serif",
+            color: "red",
+            fontSize: "32px",
+            fontWeight: "700",
+            letterSpacing: "4px",
+            textShadow: "0 0 12px rgba(255,0,0,0.6)",
+            cursor: "pointer",
+          }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          CHRYSALIS
+        </motion.h1>
+
+        <div style={{ display: "flex", gap: "30px" }}>
+          {[
+            ["About", "about"],
+            ["Categories", "categories"],
+            ["Rules", "rules"],
+            ["Submit", "submit"],
+            ["Contact", "contact"],
+          ].map(([label, id]) => (
+            <motion.div
+              key={label}
+              whileHover={{ scale: 1.2, color: "red" }}
+              style={{
+                cursor: "pointer",
+                fontSize: "18px",
+                opacity: 0.85,
+              }}
+              onClick={() =>
+                document.getElementById(id).scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              {label}
+            </motion.div>
+          ))}
+        </div>
+      </nav>
+
+      {/* ************************************* */}
+      {/*               HERO SECTION             */}
+      {/* ************************************* */}
+
+      <section
+        id="home"
+        style={{
           minHeight: "100vh",
-          padding: "120px 30px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "flex-start",
-          maxWidth: "1300px",
-          margin: "0 auto",
+          padding: "120px 60px",
           position: "relative",
           zIndex: 10,
         }}
       >
-
-        {/* MAIN TITLE */}
         <motion.h1
-          initial={{ opacity: 0, y: -60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          initial={{ opacity: 0, letterSpacing: "20px" }}
+          animate={{ opacity: 1, letterSpacing: "6px" }}
+          transition={{ duration: 1.8 }}
           style={{
-            fontSize: "95px",
-            fontWeight: "900",
-            lineHeight: "0.9",
-            textTransform: "uppercase",
-            color: "#ff0000",
-            textShadow:
-              "0 0 20px rgba(255,0,0,0.8), 0 0 40px rgba(255,0,0,0.6), 0 0 60px rgba(255,0,0,0.4)",
+            fontSize: "90px",
+            fontFamily: "'Cinzel', serif",
+            color: "red",
+            textShadow: "0 0 25px rgba(255,0,0,0.8)",
           }}
         >
           CHRYSALIS 2026
         </motion.h1>
 
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1 }}
+          transition={{ duration: 1.5 }}
           style={{
             fontSize: "28px",
-            letterSpacing: "3px",
             marginTop: "20px",
-            textTransform: "uppercase",
-            opacity: 0.9,
+            opacity: 0.85,
           }}
         >
           National Creative Writing & Media Olympiad
         </motion.h2>
 
-        {/* STRANGER THINGS RED LINE */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
+        <motion.button
+          whileHover={{ scale: 1.1, boxShadow: "0 0 20px red" }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() =>
+            document.getElementById("about").scrollIntoView({
+              behavior: "smooth",
+            })
+          }
           style={{
-            width: "400px",
-            height: "3px",
-            background: "red",
-            marginTop: "25px",
-            boxShadow: "0 0 12px red",
-          }}
-        />
-
-        {/* HERO DESCRIPTION */}
-        <motion.p
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 1 }}
-          style={{
-            marginTop: "30px",
-            maxWidth: "600px",
-            fontSize: "20px",
-            opacity: 0.85,
-            lineHeight: "1.5",
-          }}
-        >
-          Step into the Upside Down of creativity.  
-          A fictional world where writing, fantasy, media, and imagination collide.  
-          Face challenges. Break genres. Escape clichés.  
-          Only the bold survive.
-        </motion.p>
-
-        {/* SUBMIT BUTTON */}
-        <motion.a
-          href="mailto:ecsa@christuniversity.in"
-          whileHover={{ scale: 1.15 }}
-          whileTap={{ scale: 0.95 }}
-          style={{
-            marginTop: "40px",
-            padding: "16px 40px",
-            background: "rgba(255,0,0,0.85)",
-            color: "white",
-            borderRadius: "8px",
+            marginTop: "50px",
+            padding: "18px 40px",
             fontSize: "22px",
+            background: "red",
+            borderRadius: "10px",
+            border: "none",
+            color: "white",
+            cursor: "pointer",
             fontWeight: "700",
-            letterSpacing: "2px",
-            textDecoration: "none",
-            boxShadow: "0 0 20px rgba(255,0,0,0.8)",
             textTransform: "uppercase",
           }}
         >
-          Submit Your Entry →
-        </motion.a>
-
+          Enter the Upside Down →
+        </motion.button>
       </section>
-
-      {/* FOOTER */}
-      <footer
-        style={{
-          textAlign: "center",
-          padding: "40px 0",
-          opacity: 0.5,
-          fontSize: "14px",
-        }}
-      >
-        © ECSA — CHRIST University, Delhi NCR Campus
-      </footer>
-
-    </div>
-  );
-}
