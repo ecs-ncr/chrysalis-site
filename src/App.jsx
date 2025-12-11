@@ -787,6 +787,156 @@ export default function App() {
 
   </motion.div>
 </div>
+{/* CONTACT HQ SECTION */}
+<div style={{
+  marginTop: "150px",
+  padding: "40px",
+  position: "relative",
+  zIndex: 10
+}}>
+
+  <h2 style={{
+    fontSize: "48px",
+    fontWeight: "900",
+    marginBottom: "40px",
+    textTransform: "uppercase",
+    letterSpacing: "3px",
+    textShadow: "0 0 15px rgba(255,0,0,0.5)"
+  }}>
+    Contact HQ
+  </h2>
+
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1 }}
+    style={{
+      padding: "50px",
+      borderRadius: "25px",
+      background: "linear-gradient(135deg, rgba(255,0,0,0.2), rgba(0,0,0,0.85))",
+      border: "2px solid rgba(255,0,0,0.6)",
+      boxShadow: "0 0 50px rgba(255,0,0,0.6)",
+      position: "relative",
+      overflow: "hidden"
+    }}
+  >
+    {/* LEFT RED ENERGY */}
+    <motion.div
+      animate={{ opacity: [0.2, 0.45, 0.2] }}
+      transition={{ duration: 4, repeat: Infinity }}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: "-10%",
+        width: "40%",
+        height: "100%",
+        background: "radial-gradient(rgba(255,0,0,0.4), transparent)",
+        pointerEvents: "none"
+      }}
+    />
+
+    {/* RIGHT ENERGY */}
+    <motion.div
+      animate={{ opacity: [0.45, 0.2, 0.45] }}
+      transition={{ duration: 4, repeat: Infinity }}
+      style={{
+        position: "absolute",
+        top: 0,
+        right: "-10%",
+        width: "40%",
+        height: "100%",
+        background: "radial-gradient(rgba(255,0,0,0.4), transparent)",
+        pointerEvents: "none"
+      }}
+    />
+
+    {/* CONTACT DETAILS */}
+    <h3 style={{
+      fontSize: "28px",
+      fontWeight: "900",
+      marginBottom: "20px",
+      textShadow: "0 0 10px rgba(255,0,0,0.5)"
+    }}>
+      Reach Out to Us
+    </h3>
+
+    <p style={{ fontSize: "20px", opacity: 0.9 }}>
+      📧 Email: <strong>chrysalis@christuniversity.in</strong>
+    </p>
+    <p style={{ fontSize: "20px", opacity: 0.9, marginTop: "8px" }}>
+      📍 CHRIST (Deemed to be University), Delhi NCR
+    </p>
+
+    {/* SOCIAL ICONS */}
+    <div style={{
+      marginTop: "30px",
+      display: "flex",
+      gap: "20px"
+    }}>
+      <motion.div whileHover={{ scale: 1.2 }}>
+        <a href="#" style={{ color: "white", fontSize: "30px" }}>◉</a>
+      </motion.div>
+      <motion.div whileHover={{ scale: 1.2 }}>
+        <a href="#" style={{ color: "white", fontSize: "30px" }}>▲</a>
+      </motion.div>
+      <motion.div whileHover={{ scale: 1.2 }}>
+        <a href="#" style={{ color: "white", fontSize: "30px" }}>◆</a>
+      </motion.div>
+    </div>
+  </motion.div>
+</div>
+
+{/* FOOTER — ANIME TERMINAL */}
+<div style={{
+  marginTop: "120px",
+  padding: "40px 20px",
+  textAlign: "center",
+  background: "rgba(0,0,0,0.9)",
+  borderTop: "2px solid rgba(255,0,0,0.5)",
+  boxShadow: "0 -15px 40px rgba(255,0,0,0.4)",
+  position: "relative"
+}}>
+
+  {/* FLICKER BAR */}
+  <motion.div
+    animate={{ opacity: [0.2, 0.8, 0.2] }}
+    transition={{ duration: 2, repeat: Infinity }}
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      height: "4px",
+      width: "100%",
+      background: "linear-gradient(90deg, transparent, rgba(255,0,0,0.8), transparent)"
+    }}
+  />
+
+  <p style={{ fontSize: "18px", opacity: 0.8, marginTop: "20px" }}>
+    © 2026 Chrysalis • Department of English & Cultural Studies  
+  </p>
+
+  <p style={{
+    fontSize: "15px",
+    opacity: 0.6,
+    marginTop: "5px",
+    letterSpacing: "1px",
+    fontFamily: "monospace"
+  }}>
+    [ SYSTEM STATUS : ONLINE ]  
+  </p>
+
+  {/* TERMINAL BLINKING DOT */}
+  <motion.span
+    animate={{ opacity: [0, 1, 0] }}
+    transition={{ duration: 1, repeat: Infinity }}
+    style={{
+      fontSize: "22px",
+      color: "rgba(255,0,0,0.8)"
+    }}
+  >
+    ●
+  </motion.span>
+</div>
 
     </div>
   );
