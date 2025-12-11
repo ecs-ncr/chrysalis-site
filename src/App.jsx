@@ -188,6 +188,135 @@ export default function App() {
   </div>
 
 </div>
+{/* WHY PARTICIPATE SECTION */}
+<div style={{
+  marginTop: "100px",
+  padding: "40px",
+  position: "relative",
+  zIndex: 10
+}}>
+
+  <h2 style={{
+    fontSize: "48px",
+    fontWeight: "900",
+    marginBottom: "40px",
+    textTransform: "uppercase",
+    letterSpacing: "3px",
+    textShadow: "0 0 15px rgba(255,0,0,0.5)"
+  }}>
+    Why Participate?
+  </h2>
+
+  <div style={{
+    display: "grid",
+    gap: "30px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))"
+  }}>
+
+    {/* PANEL 1 */}
+    <motion.div
+      initial={{ opacity: 0, x: -40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      style={{
+        padding: "35px",
+        borderRadius: "20px",
+        background: "linear-gradient(135deg, rgba(255,0,0,0.3), rgba(0,0,0,0.6))",
+        border: "1px solid rgba(255,0,0,0.6)",
+        backdropFilter: "blur(15px)",
+        boxShadow: "0 0 35px rgba(255,0,0,0.5)",
+        position: "relative",
+        overflow: "hidden"
+      }}
+    >
+      <motion.div
+        animate={{ x: [0, 20, 0] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "200%",
+          height: "100%",
+          background: "linear-gradient(45deg, rgba(255,0,0,0.3), transparent 60%)",
+          opacity: 0.2,
+          transform: "skewX(-20deg)"
+        }}
+      />
+      <h3 style={{ fontSize: "26px", fontWeight: "800", marginBottom: "10px" }}>National Stage</h3>
+      <p style={{ opacity: 0.85 }}>Compete on a national platform and get your work seen by top evaluators and creators.</p>
+    </motion.div>
+
+    {/* PANEL 2 */}
+    <motion.div
+      initial={{ opacity: 0, x: 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      style={{
+        padding: "35px",
+        borderRadius: "20px",
+        background: "linear-gradient(135deg, rgba(255,0,0,0.3), rgba(0,0,0,0.6))",
+        border: "1px solid rgba(255,0,0,0.6)",
+        backdropFilter: "blur(15px)",
+        boxShadow: "0 0 35px rgba(255,0,0,0.5)",
+        position: "relative",
+        overflow: "hidden"
+      }}
+    >
+      <motion.div
+        animate={{ x: [0, -20, 0] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "200%",
+          height: "100%",
+          background: "linear-gradient(45deg, transparent 40%, rgba(255,0,0,0.3))",
+          opacity: 0.2,
+          transform: "skewX(-20deg)"
+        }}
+      />
+      <h3 style={{ fontSize: "26px", fontWeight: "800", marginBottom: "10px" }}>Epic Recognition</h3>
+      <p style={{ opacity: 0.85 }}>Winners receive certificates, awards, and a spotlight across our platforms.</p>
+    </motion.div>
+
+    {/* PANEL 3 */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      style={{
+        padding: "35px",
+        borderRadius: "20px",
+        background: "linear-gradient(135deg, rgba(255,0,0,0.3), rgba(0,0,0,0.6))",
+        border: "1px solid rgba(255,0,0,0.6)",
+        backdropFilter: "blur(15px)",
+        boxShadow: "0 0 35px rgba(255,0,0,0.5)",
+        position: "relative",
+        overflow: "hidden"
+      }}
+    >
+      <motion.div
+        animate={{ rotate: [0, 20, -20, 0] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          top: "-20%",
+          right: "-20%",
+          width: "60%",
+          height: "60%",
+          background: "radial-gradient(rgba(255,0,0,0.4), transparent)",
+          opacity: 0.3
+        }}
+      />
+      <h3 style={{ fontSize: "26px", fontWeight: "800", marginBottom: "10px" }}>Skill Boost</h3>
+      <p style={{ opacity: 0.85 }}>Grow your creative storytelling abilities with a challenge that pushes your limits.</p>
+    </motion.div>
+
+  </div>
+
+</div>
 
     </div>
   );
