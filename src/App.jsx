@@ -317,6 +317,156 @@ export default function App() {
   </div>
 
 </div>
+{/* EVENT DETAILS SECTION */}
+<div style={{
+  marginTop: "120px",
+  padding: "40px",
+  position: "relative",
+  zIndex: 10
+}}>
+
+  {/* HEADER */}
+  <h2 style={{
+    fontSize: "48px",
+    fontWeight: "900",
+    marginBottom: "40px",
+    textTransform: "uppercase",
+    letterSpacing: "3px",
+    textShadow: "0 0 15px rgba(255,0,0,0.5)"
+  }}>
+    Event Details
+  </h2>
+
+  {/* MAIN GRID */}
+  <div style={{
+    display: "grid",
+    gap: "40px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))"
+  }}>
+
+    {/* DATE CARD */}
+    <motion.div
+      initial={{ opacity: 0, x: -40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      style={{
+        padding: "45px",
+        borderRadius: "20px",
+        background: "linear-gradient(135deg, rgba(255,0,0,0.35), rgba(0,0,0,0.6))",
+        border: "1px solid rgba(255,0,0,0.7)",
+        boxShadow: "0 0 35px rgba(255,0,0,0.5)",
+        backdropFilter: "blur(16px)",
+        position: "relative"
+      }}
+    >
+      <h3 style={{ fontSize: "30px", fontWeight: "900", marginBottom: "10px" }}>
+        Event Day
+      </h3>
+      <p style={{ fontSize: "20px", opacity: 0.9 }}>15 March, 2026</p>
+      <p style={{ opacity: 0.7, marginTop: "5px" }}>Online Showcase + Awards</p>
+
+      {/* SLASH DECORATION */}
+      <motion.div
+        animate={{ rotate: [0, 10, -10, 0] }}
+        transition={{ duration: 5, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          top: "-10px",
+          right: "-10px",
+          width: "80px",
+          height: "80px",
+          background: "linear-gradient(45deg, rgba(255,0,0,0.4), transparent)",
+          transform: "skewX(-20deg)",
+          opacity: 0.35
+        }}
+      />
+    </motion.div>
+
+    {/* DEADLINE CARD */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9 }}
+      style={{
+        padding: "45px",
+        borderRadius: "20px",
+        background: "linear-gradient(135deg, rgba(255,0,0,0.35), rgba(0,0,0,0.6))",
+        border: "1px solid rgba(255,0,0,0.7)",
+        boxShadow: "0 0 35px rgba(255,0,0,0.5)",
+        backdropFilter: "blur(16px)",
+        position: "relative"
+      }}
+    >
+      <h3 style={{ fontSize: "30px", fontWeight: "900", marginBottom: "10px" }}>
+        Submission Deadline
+      </h3>
+      <p style={{ fontSize: "20px", opacity: 0.9 }}>27 February, 2026</p>
+      <p style={{ opacity: 0.7, marginTop: "5px" }}>All entries online</p>
+
+      {/* GLOW ORB */}
+      <motion.div
+        animate={{ scale: [1, 1.6, 1] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          bottom: "-25px",
+          left: "-25px",
+          width: "80px",
+          height: "80px",
+          background: "radial-gradient(rgba(255,0,0,0.4), transparent)",
+          borderRadius: "50%",
+          opacity: 0.3
+        }}
+      />
+    </motion.div>
+
+    {/* PRIZE POOL */}
+    <motion.div
+      initial={{ opacity: 0, x: 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.9 }}
+      style={{
+        padding: "45px",
+        borderRadius: "20px",
+        background: "linear-gradient(135deg, rgba(255,0,0,0.35), rgba(0,0,0,0.6))",
+        border: "1px solid rgba(255,0,0,0.7)",
+        boxShadow: "0 0 35px rgba(255,0,0,0.5)",
+        backdropFilter: "blur(16px)",
+        position: "relative",
+        overflow: "hidden"
+      }}
+    >
+      <h3 style={{ fontSize: "30px", fontWeight: "900", marginBottom: "10px" }}>
+        Prize Pool
+      </h3>
+      <p style={{ fontSize: "20px", opacity: 0.9 }}>₹50,000 Total</p>
+
+      <ul style={{ marginTop: "10px", opacity: 0.85, lineHeight: "1.6" }}>
+        <li>• Short Story — ₹6,000</li>
+        <li>• Scriptwriting — ₹10,000</li>
+        <li>• Short Film — ₹16,000</li>
+        <li>• Other categories — Awards & Mentions</li>
+      </ul>
+
+      {/* ENERGY WAVE */}
+      <motion.div
+        animate={{ x: [-20, 20, -20] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          bottom: "0",
+          right: "0",
+          width: "140px",
+          height: "140px",
+          background: "radial-gradient(rgba(255,0,0,0.5), transparent)",
+          opacity: 0.28
+        }}
+      />
+    </motion.div>
+
+  </div>
+
+</div>
 
     </div>
   );
