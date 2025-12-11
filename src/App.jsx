@@ -120,6 +120,74 @@ export default function App() {
         </motion.button>
 
       </div>
+{/* CATEGORY SECTION */}
+<div style={{
+  marginTop: "80px",
+  padding: "40px",
+  position: "relative",
+  zIndex: 10
+}}>
+
+  <h2 style={{
+    fontSize: "48px",
+    fontWeight: "900",
+    marginBottom: "40px",
+    textTransform: "uppercase",
+    letterSpacing: "3px",
+    textShadow: "0 0 15px rgba(255,0,0,0.5)"
+  }}>
+    Categories
+  </h2>
+
+  <div style={{
+    display: "grid",
+    gap: "30px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))"
+  }}>
+
+    {[
+      "Short Story",
+      "Poetry",
+      "Scriptwriting",
+      "Songwriting",
+      "Storyboards"
+    ].map(category => (
+      <motion.div
+        key={category}
+        whileHover={{ scale: 1.08, rotate: -2 }}
+        transition={{ type: "spring", stiffness: 200 }}
+        style={{
+          padding: "30px",
+          borderRadius: "18px",
+          background: "rgba(255,255,255,0.08)",
+          border: "1px solid rgba(255,0,0,0.35)",
+          backdropFilter: "blur(15px)",
+          boxShadow: "0 0 25px rgba(255,0,0,0.4)",
+          cursor: "pointer",
+          transform: "skewX(-3deg)",
+        }}
+      >
+        <h3 style={{
+          fontSize: "28px",
+          fontWeight: "800",
+          marginBottom: "10px",
+          textShadow: "0 0 10px rgba(255,0,0,0.4)"
+        }}>
+          {category}
+        </h3>
+        <p style={{
+          opacity: 0.8,
+          fontSize: "16px",
+          lineHeight: "1.4"
+        }}>
+          Unleash your creativity in the {category} arena.
+        </p>
+      </motion.div>
+    ))}
+
+  </div>
+
+</div>
 
     </div>
   );
