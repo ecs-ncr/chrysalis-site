@@ -29,15 +29,25 @@ export default function App() {
     };
   }, []);
 
-  // Play or pause video depending on started state
-  useEffect(() => {
-    if (!videoRef.current) return;
-    if (started) {
-      videoRef.current.play().catch(() => {});
-    } else {
-      videoRef.current.pause();
-    }
-  }, [started]);
+  // Auto-play video immediately (muted) on mount
+useEffect(() => {
+  if (!videoRef.current) return;
+  videoRef.current.muted = true;
+  videoRef.current.volume = 0;
+  videoRef.current.play().catch(() => {});
+}, []);
+
+// Only toggle sound — DO NOT control play() here
+const handleEnableSound = () => {
+  if (!videoRef.current) return;
+
+  setSoundOn((s) => {
+    const next = !s;
+    videoRef.current.muted = !next;
+    videoRef.current.volume = next ? 0.25 : 0;
+    return next;
+  });
+};
 
   // Toggle sound but respect browser autoplay policies — user interaction required
   const handleEnableSound = () => {
