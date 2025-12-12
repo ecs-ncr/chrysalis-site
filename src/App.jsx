@@ -29,7 +29,7 @@ export default function App() {
     };
   }, []);
 
-  // Auto-play video immediately (muted) on mount
+// Auto-play video immediately (muted) on mount
 useEffect(() => {
   if (!videoRef.current) return;
   videoRef.current.muted = true;
@@ -37,36 +37,26 @@ useEffect(() => {
   videoRef.current.play().catch(() => {});
 }, []);
 
-// Only toggle sound — DO NOT control play() here
+// Enable / Disable sound
 const handleEnableSound = () => {
-  if (!videoRef.current) return;
+  setSoundOn((prev) => {
+    const next = !prev;
 
-  setSoundOn((s) => {
-    const next = !s;
-    videoRef.current.muted = !next;
-    videoRef.current.volume = next ? 0.25 : 0;
+    try {
+      if (videoRef.current) {
+        videoRef.current.muted = !next;    // unmute if next = true
+        videoRef.current.volume = next ? 0.25 : 0;
+        // IMPORTANT:
+        // Do NOT call play() here — autoplay works only when muted.
+      }
+    } catch (_) {}
+
     return next;
   });
+
+  // Mark user interaction for Safari autoplay rules
+  setStarted(true);
 };
-
-  // Toggle sound but respect browser autoplay policies — user interaction required
-  const handleEnableSound = () => {
-    setSoundOn((s) => {
-      const next = !s;
-      try {
-        if (videoRef.current) {
-          videoRef.current.muted = !next;
-          videoRef.current.volume = next ? 0.25 : 0;
-        }
-      } catch (_) {}
-      // mark started when user interacts
-      setStarted(true);
-      return next;
-    });
-  };
-
-  const goTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-
   // Content text (academic, polished)
   const aboutChrysalis = `Chrysalis 2026 is the national-level Creative Writing and Media Olympiad organized by the Department of English and Cultural Studies, CHRIST (Deemed to be University), Delhi NCR. The Olympiad offers a structured forum for young writers and media practitioners to present original work, refine craft, and engage with peer and faculty evaluators.`;
   const aboutDepartment = `The Department of English and Cultural Studies fosters interdisciplinary inquiry across literature, cultural theory, media studies and creative practice. Our faculty combine scholarly research and pedagogical innovation to equip students with analytical rigor, strong communication skills and a commitment to social and cultural engagement.`;
