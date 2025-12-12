@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -13,50 +12,46 @@ export default function App() {
   const lastScroll = useRef({ time: Date.now(), y: 0 });
   const scrollCooldown = useRef(false);
 
-  // Your local video
+  // Local video
   const VIDEO_SRC = "/videos/mindflayer.mp4";
 
-  // Audio SFX
+  // Minimal SFX
   const GROWL_SFX =
-    "https://cdn.pixabay.com/download/audio/2022/03/10/audio_74335ce0a6.mp3?filename=monster-growl-108750.mp3";
+    "https://cdn.pixabay.com/audio/2022/03/10/audio_74335ce0a6.mp3";
   const STATIC_SFX =
-    "https://cdn.pixabay.com/download/audio/2021/09/27/audio_572cb15c2a.mp3?filename=vhs-static-94416.mp3";
+    "https://cdn.pixabay.com/audio/2021/09/27/audio_572cb15c2a.mp3";
 
-  // Unlock video + audio on first interaction
+  // Unlock audio/video on first click
   useEffect(() => {
     const unlock = () => {
       if (videoRef.current) {
         videoRef.current.muted = false;
-        videoRef.current.volume = 0.18; // LOWER VOLUME
+        videoRef.current.volume = 0.18;
         videoRef.current.play().catch(() => {});
       }
       setStarted(true);
     };
 
     window.addEventListener("click", unlock, { once: true });
-    window.addEventListener("keydown", unlock, { once: true });
     window.addEventListener("touchstart", unlock, { once: true });
-
     return () => {
       window.removeEventListener("click", unlock);
-      window.removeEventListener("keydown", unlock);
       window.removeEventListener("touchstart", unlock);
     };
   }, []);
 
-  // Jumpscare on FAST scroll
+  // Jumpscare (flash) on FAST scroll
   useEffect(() => {
     const onScroll = () => {
       const now = Date.now();
       const y = window.scrollY;
       const dt = Math.max(1, now - lastScroll.current.time);
       const dy = Math.abs(y - lastScroll.current.y);
-
       const speed = dy / dt;
 
       lastScroll.current = { time: now, y };
 
-      if (!scrollCooldown.current && speed > 1.2) {
+      if (!scrollCooldown.current && speed > 1.3) {
         scrollCooldown.current = true;
         setShowJumpscare(true);
 
@@ -70,8 +65,8 @@ export default function App() {
           staticRef.current.play().catch(() => {});
         } catch (_) {}
 
-        setTimeout(() => setShowJumpscare(false), 900);
-        setTimeout(() => (scrollCooldown.current = false), 6000);
+        setTimeout(() => setShowJumpscare(false), 200);
+        setTimeout(() => (scrollCooldown.current = false), 5000);
       }
     };
 
@@ -85,16 +80,14 @@ export default function App() {
   return (
     <div
       style={{
-        minHeight: "100vh",
-        width: "100%",
         background: "black",
         color: "white",
-        position: "relative",
+        fontFamily: "Inter, sans-serif",
+        minHeight: "100vh",
         overflowX: "hidden",
-        fontFamily: "'Inter', sans-serif",
       }}
     >
-      {/* PERFECT FULL-SCREEN VIDEO */}
+      {/* PERFECT VIDEO BACKGROUND */}
       <div
         style={{
           position: "fixed",
@@ -106,90 +99,84 @@ export default function App() {
         <video
           ref={videoRef}
           src={VIDEO_SRC}
-          loop
-          muted={!started}
-          playsInline
           autoPlay
+          loop
+          playsInline
+          muted={!started}
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "cover", // ensures full coverage
+            objectFit: "cover",
             background: "black",
           }}
         />
       </div>
 
-      {/* Dark overlay */}
+      {/* DARK OVERLAY */}
       <div
         style={{
           position: "fixed",
           inset: 0,
-          background: "rgba(0,0,0,0.45)",
           zIndex: -5,
+          background: "rgba(0,0,0,0.4)",
         }}
       />
 
-      {/* Audio elements */}
+      {/* Audio */}
       <audio ref={growlRef} src={GROWL_SFX} preload="auto" />
       <audio ref={staticRef} src={STATIC_SFX} preload="auto" />
 
-      {/* Start screen */}
+      {/* START SCREEN */}
       {!started && (
         <div
           onClick={() => setStarted(true)}
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 9999,
-            background: "rgba(0,0,0,0.5)",
+            zIndex: 999,
+            background: "rgba(0,0,0,0.6)",
             display: "flex",
-            alignItems: "center",
             justifyContent: "center",
+            alignItems: "center",
             cursor: "pointer",
           }}
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <h1
               style={{
-                fontFamily: "'Cinzel', serif",
+                fontFamily: "Cinzel, serif",
                 color: "#ff2a2a",
-                fontSize: 48,
-                marginBottom: 10,
+                fontSize: "3rem",
                 textShadow: "0 0 20px red",
+                textAlign: "center",
               }}
             >
               CHRYSALIS 2026
             </h1>
-            <p style={{ color: "#ffbdbd" }}>Click Anywhere to Begin</p>
+            <p style={{ textAlign: "center", color: "#ffcccc" }}>
+              Click Anywhere to Begin
+            </p>
           </motion.div>
         </div>
       )}
 
-      {/* NAV */}
+      {/* NAVBAR */}
       <nav
         style={{
           position: "fixed",
           top: 0,
           width: "100%",
-          zIndex: 20,
+          padding: "16px 28px",
           display: "flex",
           justifyContent: "space-between",
-          padding: "14px 28px",
-          background: "rgba(0,0,0,0.45)",
+          background: "rgba(0,0,0,0.4)",
           backdropFilter: "blur(6px)",
+          zIndex: 50,
         }}
       >
         <div
+          style={{ fontFamily: "Cinzel", color: "#ff3b3b", cursor: "pointer" }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          style={{
-            cursor: "pointer",
-            color: "#ff3838",
-            fontFamily: "'Cinzel', serif",
-          }}
         >
           CHRYSALIS
         </div>
@@ -200,7 +187,7 @@ export default function App() {
               <div
                 key={id}
                 onClick={() => goTo(id)}
-                style={{ cursor: "pointer", opacity: 0.9 }}
+                style={{ cursor: "pointer" }}
               >
                 {id.charAt(0).toUpperCase() + id.slice(1)}
               </div>
@@ -209,43 +196,41 @@ export default function App() {
         </div>
       </nav>
 
-      {/* MAIN CONTENT */}
-      <main style={{ padding: "120px 20px 60px", maxWidth: "900px", margin: "0 auto" }}>
+      {/* CONTENT */}
+      <main style={{ padding: "120px 20px", maxWidth: 900, margin: "auto" }}>
         {/* HERO */}
-        <section style={{ minHeight: "70vh" }}>
-          <h1
-            style={{
-              color: "#ff3b3b",
-              fontSize: "clamp(40px, 7vw, 80px)",
-              fontFamily: "'Cinzel', serif",
-              textShadow: "0 0 18px red",
-            }}
-          >
-            CHRYSALIS 2026
-          </h1>
-          <p style={{ color: "#ffdede", maxWidth: 700 }}>
-            National Creative Writing & Media Olympiad — Enter the Upside Down of storytelling.
-          </p>
-        </section>
+        <h1
+          style={{
+            fontFamily: "Cinzel",
+            color: "#ff3b3b",
+            fontSize: "clamp(40px, 6vw, 80px)",
+            textShadow: "0 0 15px red",
+          }}
+        >
+          CHRYSALIS 2026
+        </h1>
+        <p style={{ color: "#ffdede", maxWidth: 700 }}>
+          National Creative Writing & Media Olympiad — Enter the Upside Down of
+          storytelling.
+        </p>
 
         {/* ABOUT */}
         <section id="about" style={{ padding: "60px 0" }}>
-          <h2 style={{ color: "#ff3b3b", fontFamily: "'Cinzel', serif" }}>
+          <h2 style={{ color: "#ff3b3b", fontFamily: "Cinzel" }}>
             About Chrysalis
           </h2>
-          <p style={{ lineHeight: 1.7 }}>
-            Chrysalis is the national Creative Writing & Media Olympiad hosted by the
-            Department of English & Cultural Studies, CHRIST (Deemed to be University), Delhi NCR.
+          <p>
+            Hosted by the Department of English & Cultural Studies, CHRIST
+            (Deemed to be University), Delhi NCR.
           </p>
         </section>
 
         {/* CATEGORIES */}
         <section id="categories" style={{ padding: "60px 0" }}>
-          <h2 style={{ color: "#ff3b3b", fontFamily: "'Cinzel', serif" }}>
+          <h2 style={{ color: "#ff3b3b", fontFamily: "Cinzel" }}>
             Categories
           </h2>
-
-          <ul style={{ lineHeight: 1.8 }}>
+          <ul>
             <li>Poetry</li>
             <li>Songwriting</li>
             <li>Short Story</li>
@@ -256,11 +241,10 @@ export default function App() {
 
         {/* PRIZES */}
         <section id="prizes" style={{ padding: "60px 0" }}>
-          <h2 style={{ color: "#ff3b3b", fontFamily: "'Cinzel', serif" }}>
+          <h2 style={{ color: "#ff3b3b", fontFamily: "Cinzel" }}>
             Prize Pool
           </h2>
-
-          <ul style={{ lineHeight: 2 }}>
+          <ul>
             <li>Poetry — ₹3,000</li>
             <li>Songwriting — ₹5,000</li>
             <li>Short Story — ₹6,000</li>
@@ -268,90 +252,67 @@ export default function App() {
             <li>Short Film — ₹16,000</li>
           </ul>
 
-          <p style={{ marginTop: 10, color: "#ffdede" }}>
-            <strong>Total Prize Pool: ₹45,000</strong>
-          </p>
+          <p style={{ marginTop: 10 }}>Total: ₹45,000</p>
         </section>
 
         {/* RULES */}
         <section id="rules" style={{ padding: "60px 0" }}>
-          <h2 style={{ color: "#ff3b3b", fontFamily: "'Cinzel', serif" }}>
+          <h2 style={{ color: "#ff3b3b", fontFamily: "Cinzel" }}>
             Rules & Guidelines
           </h2>
-
-          <ul style={{ lineHeight: 1.8 }}>
+          <ul>
             <li>Only school students (Classes 9–12) may participate.</li>
-            <li>All submissions must be original and created exclusively for Chrysalis.</li>
-            <li>Plagiarism leads to immediate disqualification.</li>
-            <li>Participants may enter multiple categories.</li>
-            <li>Follow file-format rules for each submission.</li>
-            <li>Include name, institution, and category in your email.</li>
+            <li>All work must be original.</li>
+            <li>No plagiarism.</li>
+            <li>Multiple category entries allowed.</li>
+            <li>Follow category-specific file formats.</li>
+            <li>Include name, school, and category in the email.</li>
           </ul>
         </section>
 
         {/* SUBMIT */}
         <section id="submit" style={{ padding: "60px 0" }}>
-          <h2 style={{ color: "#ff3b3b", fontFamily: "'Cinzel', serif" }}>
+          <h2 style={{ color: "#ff3b3b", fontFamily: "Cinzel" }}>
             Submit Your Entry
           </h2>
-
-          <p style={{ lineHeight: 1.6 }}>
+          <p>
             Email your submission to:
             <br />
-            <a href="mailto:ecs.ncr@christuniversity.in" style={{ color: "#ff7a7a" }}>
+            <a
+              href="mailto:ecs.ncr@christuniversity.in"
+              style={{ color: "#ff7a7a" }}
+            >
               ecs.ncr@christuniversity.in
             </a>
           </p>
-
-          <p style={{ color: "#ffdede" }}>
-            Include: Name • School • Category  
-            <br />
-            Deadline: 27 Feb 2026
-          </p>
+          <p>Deadline: 27 Feb 2026</p>
         </section>
 
         {/* CONTACT */}
         <section id="contact" style={{ padding: "60px 0" }}>
-          <h2 style={{ color: "#ff3b3b", fontFamily: "'Cinzel', serif" }}>
-            Contact
-          </h2>
-          <p>For queries: ecs.ncr@christuniversity.in</p>
+          <h2 style={{ color: "#ff3b3b", fontFamily: "Cinzel" }}>Contact</h2>
+          <p>Queries: ecs.ncr@christuniversity.in</p>
         </section>
 
         {/* FOOTER */}
-        <footer
-          style={{
-            padding: "30px 0",
-            textAlign: "center",
-            opacity: 0.8,
-            marginTop: 20,
-          }}
-        >
+        <footer style={{ textAlign: "center", opacity: 0.8, padding: "20px 0" }}>
           © 2026 Chrysalis — Dept. of English & Cultural Studies  
           <br />
-          Built & Designed by <strong>Siddharth Dubey</strong>
+          Designed by <strong>Siddharth Dubey</strong>
         </footer>
       </main>
 
-      {/* JUMPSCARE */}
+      {/* FLASH JUMPSCARE (NO EYE) */}
       {showJumpscare && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+        <div
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(0,0,0,0.95)",
-            zIndex: 99999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            background: "rgba(255,0,0,0.3)",
+            backdropFilter: "blur(8px)",
+            zIndex: 9999,
           }}
-        >
-          <h1 style={{ color: "red", fontSize: 90, textShadow: "0 0 40px red" }}>
-            👁
-          </h1>
-        </motion.div>
+        />
       )}
     </div>
   );
