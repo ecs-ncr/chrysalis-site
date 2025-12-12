@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -65,7 +66,7 @@ export default function App() {
           staticRef.current.play().catch(() => {});
         } catch (_) {}
 
-        setTimeout(() => setShowJumpscare(false), 200);
+        setTimeout(() => setShowJumpscare(false), 180);
         setTimeout(() => (scrollCooldown.current = false), 5000);
       }
     };
@@ -84,16 +85,20 @@ export default function App() {
         color: "white",
         fontFamily: "Inter, sans-serif",
         minHeight: "100vh",
+        width: "100%",
         overflowX: "hidden",
       }}
     >
-      {/* PERFECT VIDEO BACKGROUND */}
+      {/* PERFECT FULLSCREEN VIDEO BACKGROUND */}
       <div
         style={{
           position: "fixed",
-          inset: 0,
-          zIndex: -10,
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
           overflow: "hidden",
+          zIndex: -10,
         }}
       >
         <video
@@ -104,21 +109,27 @@ export default function App() {
           playsInline
           muted={!started}
           style={{
-            width: "100%",
-            height: "100%",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            minWidth: "100%",
+            minHeight: "100%",
+            width: "auto",
+            height: "auto",
             objectFit: "cover",
-            background: "black",
           }}
         />
       </div>
 
-      {/* DARK OVERLAY */}
+      {/* TRANSLUCENT OVERLAY */}
       <div
         style={{
           position: "fixed",
           inset: 0,
           zIndex: -5,
-          background: "rgba(0,0,0,0.4)",
+          background: "rgba(0,0,0,0.25)",
+          backdropFilter: "brightness(0.85)",
         }}
       />
 
@@ -169,7 +180,7 @@ export default function App() {
           padding: "16px 28px",
           display: "flex",
           justifyContent: "space-between",
-          background: "rgba(0,0,0,0.4)",
+          background: "rgba(0,0,0,0.35)",
           backdropFilter: "blur(6px)",
           zIndex: 50,
         }}
@@ -197,7 +208,7 @@ export default function App() {
       </nav>
 
       {/* CONTENT */}
-      <main style={{ padding: "120px 20px", maxWidth: 900, margin: "auto" }}>
+      <main style={{ paddingTop: "140px", padding: "20px", maxWidth: 900, margin: "auto" }}>
         {/* HERO */}
         <h1
           style={{
@@ -251,7 +262,6 @@ export default function App() {
             <li>Scriptwriting — ₹10,000</li>
             <li>Short Film — ₹16,000</li>
           </ul>
-
           <p style={{ marginTop: 10 }}>Total: ₹45,000</p>
         </section>
 
@@ -294,7 +304,6 @@ export default function App() {
           <p>Queries: ecs.ncr@christuniversity.in</p>
         </section>
 
-        {/* FOOTER */}
         <footer style={{ textAlign: "center", opacity: 0.8, padding: "20px 0" }}>
           © 2026 Chrysalis — Dept. of English & Cultural Studies  
           <br />
@@ -302,15 +311,16 @@ export default function App() {
         </footer>
       </main>
 
-      {/* FLASH JUMPSCARE (NO EYE) */}
+      {/* FLASH JUMPSCARE */}
       {showJumpscare && (
         <div
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(255,0,0,0.3)",
-            backdropFilter: "blur(8px)",
+            background: "rgba(255,40,40,0.25)",
+            backdropFilter: "blur(10px)",
             zIndex: 9999,
+            pointerEvents: "none",
           }}
         />
       )}
